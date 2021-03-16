@@ -12,7 +12,7 @@ async def wait_random(max_delay: int=10) -> float:
     Args:
         max_delay (int, optional): max
 
-    Return:
+    Returns:
         float: wait time
     """
     rand = random.uniform(0, max_delay)
