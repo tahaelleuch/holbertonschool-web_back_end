@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-"""basic"""
-
+"""0-basic_cache.py
+"""
 from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
-    """
-    basiccash
+    """BasicCache class
+    Args:
+        BaseCaching ([class]): [BaseCaching module]
     """
     def put(self, key, item):
-        """put funcs
-
+        """create
         Args:
             key(str): key to the dict
             item(str): value to be assigned
@@ -19,12 +19,10 @@ class BasicCache(BaseCaching):
             self.cache_data[key] = item
 
     def get(self, key):
-        """get function
-
+        """get
         Args:
             key(str): key to the dict
-
         Returns:
-            str or None: get value by key
+            str / None: get value by key
         """
         return self.cache_data.get(key) or None
