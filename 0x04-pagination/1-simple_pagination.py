@@ -38,4 +38,3 @@ class Server:
         tup = index_range(page, page_size)
         mydata = self.dataset()
         return mydata[tup[0]:tup[1]]
-
