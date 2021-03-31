@@ -34,4 +34,3 @@ def unauthorize() -> str:
         abort with status code 401
     """
     abort(401)
-
