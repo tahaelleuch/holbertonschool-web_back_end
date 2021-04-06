@@ -45,7 +45,6 @@ class SessionExpAuth(SessionAuth):
 
         if "created_at" not in session_dict:
             return None
-
         t = timedelta(seconds=self.session_duration)
         delta_time = t + session_dict["created_at"]
 
