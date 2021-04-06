@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""expiration date for session"""
+"""
+expiration date for session
+"""
 
 from api.v1.auth.session_auth import SessionAuth
 import os
