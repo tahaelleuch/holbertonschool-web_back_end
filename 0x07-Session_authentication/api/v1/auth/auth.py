@@ -26,17 +26,9 @@ class Auth:
         if excluded_paths is None and not excluded_paths:
             return True
 
-        if path[-1] == "/":
-            path = path[:-1]
+        if path[-1] != "/":
+            path = path + "/"
 
-        for i in range(len(excluded_paths)):
-            if excluded_paths[i][-1] == "/":
-                excluded_paths[i] = excluded_paths[i][:-1]
-
-            if excluded_paths[i][-1] == "*":
-                first_len = len(excluded_paths[i][:-1])
-                if path[:first_len - 1] in excluded_paths[i][:-1]:
-                    return False
         if path in excluded_paths:
             return False
 
