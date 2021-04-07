@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-expiration date for session
+Module of exp auth
 """
 
 from api.v1.auth.session_auth import SessionAuth
@@ -10,7 +10,6 @@ from datetime import datetime, timedelta
 
 class SessionExpAuth(SessionAuth):
     """expired session"""
-
     def __init__(self):
         """init"""
         if not os.getenv('SESSION_DURATION'):
@@ -36,20 +35,15 @@ class SessionExpAuth(SessionAuth):
         """user"""
         if session_id is None:
             return None
-
         if session_id not in self.user_id_by_session_id:
             return None
-
         session_dict = self.user_id_by_session_id[session_id]
-
         if self.session_duration <= 0:
             return session_dict["user_id"]
-
         if "created_at" not in session_dict:
             return None
-        t = timedelta(seconds=self.session_duration)
-        delta_time = t + session_dict["created_at"]
-
+        duration = timedelta(seconds=self.session_duration)
+        delta_time = duration + session_dict["created_at"]
         if delta_time < datetime.now():
             return None
         return session_dict["user_id"]
