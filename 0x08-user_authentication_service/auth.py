@@ -2,6 +2,7 @@
 """Auth module"""
 import bcrypt
 
+
 def _hash_password(password: str) -> str:
     """crypt password"""
     crypted = bcrypt.hashpw(
