@@ -54,9 +54,10 @@ class DB:
     def update_user(self, user_id: int, **kwargs) -> None:
         """update the users attributes"""
         user = self.find_user_by(id=user_id)
-        for k, v in kwargs.items():
-            if not hasattr(user, k):
-                raise ValueError
-            else:
+        try:
+            for k, v in kwargs.items():
                 setattr(user, k, v)
+        except BaseException:
+            raise ValueError
         self._session.commit()
+        return None
