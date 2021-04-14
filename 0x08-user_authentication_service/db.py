@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# coding=utf-8
 """DB module
 """
 from sqlalchemy import create_engine
@@ -50,3 +51,14 @@ class DB:
             raise NoResultFound
         else:
             return user
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """update the user’s attributes"""
+        user = self.find_user_by(id=user_id)
+        for k, v in kwargs.items():
+            if not hasattr(user, k):
+                raise ValueError
+            else:
+                setattr(user, k, v)
+        self._session.commit()
+        return None
