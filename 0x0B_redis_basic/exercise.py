@@ -36,8 +36,7 @@ def call_history(method: Callable) -> Callable:
 
 
 def replay(method: callable):
-    """[replay]
-    """
+    """replay function"""
     key = method.__qualname__
     r = redis.Redis()
     number_calls = r.get(key)
@@ -46,8 +45,7 @@ def replay(method: callable):
         number_calls = number_calls.decode('utf-8')
     except Exception:
         number_calls = 0
-
-    print(key + " was called " + number_calls + " times:")
+    print("{} was called {} times:".format(key, number_calls))
 
     inps = key + ":inputs"
     outs = key + ":outputs"
