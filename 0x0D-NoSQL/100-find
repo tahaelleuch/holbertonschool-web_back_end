@@ -1,0 +1,2 @@
+// find by starting with
+db.school.find({'name': /^Holberton/})
