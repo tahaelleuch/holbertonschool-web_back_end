@@ -8,12 +8,12 @@ from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
-    """count calls"""
+    """count_calls"""
     key = method.__qualname__
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """wraper"""
+        """wrapper"""
         self._redis.incr(key)
         return method(self, *args, **kwargs)
     return wrapper
@@ -21,22 +21,25 @@ def count_calls(method: Callable) -> Callable:
 
 def call_history(method: Callable) -> Callable:
     """call_history"""
+
     key = method.__qualname__
     inputs = "".join([key, ":inputs"])
     outputs = "".join([key, ":outputs"])
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """wraper"""
+        """wrapper"""
         self._redis.rpush(inputs, str(args))
         result = method(self, *args, **kwargs)
         self._redis.rpush(outputs, str(result))
         return result
+
     return wrapper
 
 
 def replay(method):
     """replay function"""
+
     key = method.__qualname__
     r = redis.Redis()
     number_calls = r.get(key)
