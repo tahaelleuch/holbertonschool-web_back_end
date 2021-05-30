@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""web"""
+"""web module"""
 
 import requests
 import redis
@@ -11,6 +11,7 @@ r = redis.Redis()
 
 def count_req(method: Callable) -> Callable:
     """counr request"""
+
     @wraps(method)
     def wrapper(url):
         """wrapper"""
