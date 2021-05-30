@@ -25,6 +25,8 @@ def count_req(method: Callable) -> Callable:
 
     return wrapper
 
+
+@count_req
 def get_page(url: str) -> str:
     """get page"""
     req = requests.get(url)
