@@ -3,10 +3,15 @@ export default class Building {
     {
       const proto = Object.getPrototypeOf(this);
       const superProto = Building.prototype;
+      /*eslint-disable */
       const missing = Object.getOwnPropertyNames(superProto).find((name) => typeof superProto[name] === 'function' && !proto.hasOwnProperty(name));
       if (missing) throw new TypeError('Class extending Building must override evacuationWarningMessage');
     }
     this.sqft = sqft;
+  }
+
+  evacuationWarningMessage() {
+    return this._sqft;
   }
 
   get sqft() {
@@ -18,9 +23,5 @@ export default class Building {
       throw new TypeError('Sqft must be a number');
     }
     this._sqft = sqft;
-  }
-
-  evacuationWarningMessage() {
-    return this._sqft;
   }
 }

@@ -19,7 +19,7 @@ export default class HolbertonClass {
     if (typeof value !== 'string') {
       throw new TypeError('size must be a string');
     }
-    this._code = value;
+    this._location = value;
   }
 
   get location() {
